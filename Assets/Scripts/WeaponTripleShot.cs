@@ -7,6 +7,10 @@ public class WeaponTripleShot : WeaponBase
     /// <summary>
     /// Shoot will spawn a three bullets, provided enough time has passed compared to our fireDelay.
     /// </summary>
+
+    [SerializeField]
+    private int y = 1;
+
     public override void Shoot()
     {
         // get the current time
@@ -23,7 +27,7 @@ public class WeaponTripleShot : WeaponBase
                 // create our bullet
                 GameObject newBullet = Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
                 // set their direction
-                newBullet.GetComponent<MoveConstantly>().Direction = new Vector2(x + 0.5f * i, 0.5f);
+                newBullet.GetComponent<MoveConstantly>().Direction = new Vector2(x + 0.5f * i, 0.5f * y);
             }
 
             // update our shooting state

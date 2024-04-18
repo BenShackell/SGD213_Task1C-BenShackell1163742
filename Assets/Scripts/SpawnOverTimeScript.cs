@@ -14,6 +14,9 @@ public class SpawnOverTimeScript : MonoBehaviour
     [SerializeField]
     private GameObject spawnPickUp;
 
+    [SerializeField]
+    private GameObject spawnBoss;
+
     // Delay between spawns
     [SerializeField]
     private float spawnDelayEnemy = 2f;
@@ -23,6 +26,9 @@ public class SpawnOverTimeScript : MonoBehaviour
 
     [SerializeField]
     private float spawnDelayPickup = 2f;
+
+    [SerializeField]
+    private float spawnDelayBoss = 10f;
 
     private Renderer ourRenderer;
 
@@ -40,6 +46,7 @@ public class SpawnOverTimeScript : MonoBehaviour
         InvokeRepeating("SpawnEnemy", spawnDelayEnemy, spawnDelayEnemy);
         InvokeRepeating("SpawnEnemyShip", spawnDelayEShip, spawnDelayEShip);
         InvokeRepeating("SpawnPickUp", spawnDelayPickup, spawnDelayPickup);
+        InvokeRepeating("SpawnBoss", spawnDelayBoss, spawnDelayBoss);
     }
 
     void SpawnEnemy()
@@ -76,5 +83,17 @@ public class SpawnOverTimeScript : MonoBehaviour
 
         // Spawn the object at the 'spawnPoint' position
         Instantiate(spawnPickUp, spawnPoint, Quaternion.identity);
+    }
+
+    void SpawnBoss()
+    {
+        float x1 = transform.position.x - ourRenderer.bounds.size.x / 2;
+        float x2 = transform.position.x + ourRenderer.bounds.size.x / 2;
+
+        // Randomly pick a point within the spawn object
+        Vector2 spawnPoint = new Vector2(Random.Range(x1, x2), transform.position.y);
+
+        // Spawn the object at the 'spawnPoint' position
+        Instantiate(spawnBoss, spawnPoint, Quaternion.identity);
     }
 }
