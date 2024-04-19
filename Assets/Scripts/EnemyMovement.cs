@@ -7,11 +7,6 @@ using UnityEngine;
 /// </summary>
 public class EnemyMovement : EngineBase
 {
-
-    // enemyAcceleration indicates how fast the enemy accelerates
-    [SerializeField]
-    private float enemyAcceleration = 5000f;
-
     // local references
     private Rigidbody2D ourRigidbody;
 
@@ -29,7 +24,7 @@ public class EnemyMovement : EngineBase
     public void MoveEnemy(Vector2 direction)
     {
         //calculate our force to add
-        Vector2 forceToAdd = direction * enemyAcceleration * Time.deltaTime;
+        Vector2 forceToAdd = direction * acceleration * Time.deltaTime;
         // apply forceToAdd to ourRigidbody
         ourRigidbody.AddForce(forceToAdd);
     }

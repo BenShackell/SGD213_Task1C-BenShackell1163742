@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EngineBase : MonoBehaviour
+public abstract class EngineBase : MonoBehaviour
 {
     // acceleration indicates how fast the enemy accelerates
     [SerializeField]
