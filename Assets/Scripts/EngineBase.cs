@@ -6,7 +6,7 @@ public class EngineBase : MonoBehaviour
 {
     // acceleration indicates how fast the enemy accelerates
     [SerializeField]
-    private float acceleration = 5000f;
+    protected float acceleration = 5000f;
 
     // local references
     private Rigidbody2D ourRigidbody;

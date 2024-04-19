@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// EnemyMovement handles all of the movement specifc state and behaviour for the enemy.
 /// </summary>
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : EngineBase
 {
 
     // enemyAcceleration indicates how fast the enemy accelerates
