@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class WeaponMachineGun : WeaponBase
 {
+    void Start()
+    {
+        // Do some math to perfectly spawn bullets in front of us
+        bulletOffset = GetComponent<Renderer>().bounds.size.y / 2 // Half of our size
+            + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
+    }
+
     /// <summary>
     /// Shoot will spawn a new bullet, provided enough time has passed compared to our fireDelay.
     /// </summary>
     public override void Shoot()
     {
-        // get the current time
-        float currentTime = Time.time;
+        float CurrentTime = Time.time;
 
-        // if enough time has passed since our last shot compared to our fireDelay, spawn our bullet
-        if (currentTime - lastFiredTime > fireDelay)
+        // Have a delay so we don't shoot too many bullets
+        if (CurrentTime - lastFiredTime > fireDelay)
         {
-            // create our bullet
-            GameObject newBullet = Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
-            // update our shooting state
-            lastFiredTime = currentTime;
+            Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
+
+            Instantiate(bullet, spawnPosition, transform.rotation);
+
+            lastFiredTime = CurrentTime;
         }
+    }
+    /// <summary>
+    /// SampleMethod is a sample of how to use abstraction by
+    /// specification. It converts a provided integer to a float.
+    /// </summary>
+    /// <param name="number">any integer</param>
+    /// <returns>the number parameter as a float</returns>
+    public float SampleMethod(int number)
+    {
+        return number;
     }
 }
