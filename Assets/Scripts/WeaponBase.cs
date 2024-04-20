@@ -8,8 +8,6 @@ public abstract class WeaponBase : MonoBehaviour
     [SerializeField]
     protected float fireDelay = 1f;
 
-    protected float bulletOffset = 2f;
-
     [SerializeField]
     protected GameObject bullet;
     public GameObject Bullet

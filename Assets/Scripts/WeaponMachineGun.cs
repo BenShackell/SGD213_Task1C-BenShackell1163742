@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class WeaponMachineGun : WeaponBase
 {
-    void Start()
-    {
-        // Do some math to perfectly spawn bullets in front of us
-        bulletOffset = GetComponent<Renderer>().bounds.size.y / 2 // Half of our size
-            + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
-    }
-
     /// <summary>
     /// Shoot will spawn a new bullet, provided enough time has passed compared to our fireDelay.
     /// </summary>
@@ -21,7 +14,7 @@ public class WeaponMachineGun : WeaponBase
         // Have a delay so we don't shoot too many bullets
         if (CurrentTime - lastFiredTime > fireDelay)
         {
-            Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
+            Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y);
 
             Instantiate(bullet, spawnPosition, transform.rotation);
 
